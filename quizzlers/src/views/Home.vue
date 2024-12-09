@@ -1,9 +1,14 @@
 <script>
+import axios from 'axios';
 export default {
   name: 'App',
   methods: {
     goToQuiz() {
       this.$router.push({ name: 'Quiz' });
+    },
+    mounted() {
+      console.log(axios.put('localhost/backend/test', {
+      }));
     }
   }
 }
@@ -19,9 +24,3 @@ export default {
     </button>
   </div>
 </template>
-
-<style scoped>
-button {
-  cursor: pointer;
-}
-</style>
