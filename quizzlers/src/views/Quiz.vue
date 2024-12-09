@@ -1,0 +1,3 @@
+<template>
+    kokot pica
+</template>
