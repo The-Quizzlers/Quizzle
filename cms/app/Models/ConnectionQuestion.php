@@ -12,4 +12,9 @@ class ConnectionQuestion extends Model
       'first_half',
       'second_half'
     ];
+
+    public function quiz()
+    {
+        return $this->belongsTo(Quiz::class);
+    }
 }

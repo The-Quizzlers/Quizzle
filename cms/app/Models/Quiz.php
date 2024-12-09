@@ -13,4 +13,20 @@ class Quiz extends Model
         'views',
         'favourites'
         ];
+    public function choiceQuestions()
+    {
+        return $this->hasMany(ChoiceQuestion::class, 'quiz_id', 'id');
+    }
+    public function TFQuestions()
+    {
+        return $this->hasMany(TrueFalseQuestion::class, 'quiz_id', 'id');
+    }
+    public function connectQuestions()
+    {
+        return $this->hasMany(ConnectionQuestion::class, 'quiz_id', 'id');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

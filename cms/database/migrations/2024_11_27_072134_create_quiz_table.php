@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('quiz', function (Blueprint $table) {
+        Schema::create('quizzes', function (Blueprint $table) {
             $table->id();
-            $table->boolean('public');
+            $table->boolean('public')->default(false);
             $table->string('category');
             $table->string('name');
-            $table->integer('views');
-            $table->integer('favourites');
+            $table->integer('views')->default(0);
+            $table->integer('favourites')->default(0);
             $table->timestamps();
         });
     }

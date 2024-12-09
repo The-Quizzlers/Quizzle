@@ -11,4 +11,9 @@ class TrueFalseQuestion extends Model
         'quiz_id',
         'validity'
     ];
+
+    public function quiz()
+    {
+        return $this->belongsTo(Quiz::class);
+    }
 }
