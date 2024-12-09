@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ConnectionQuestion;
 use Illuminate\Http\Request;
 
-class ConnectionQuestionController extends Controller
+class ConnectionQuestionController
 {
     public function store()
     {

@@ -6,7 +6,7 @@ use App\Models\Quiz;
 use App\Models\TrueFalseQuestion;
 use Illuminate\Http\Request;
 
-class QuizController extends Controller
+class QuizController
 {
     public function test()
     {
@@ -22,7 +22,7 @@ class QuizController extends Controller
             'validity' => true
         ]);
 
-        return "test";
+        return "success";
     }
 
     public function store()
