@@ -4,10 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\QuizController;
 
+
+Route::get('/api/get-message',[QuizController::class, 'test']);
+
+
 Route::get('/', function () {
     return view('welcome');
 });
-Route::group(['prefix' => '/backend'], function () {
+Route::group(['prefix' => '/api'], function () {
     Route::post("/test", [QuizController::class, 'test']) -> name("quiz.test");
 
     Route::group(['prefix'=>'/auth', 'as' => 'auth.'], function (){

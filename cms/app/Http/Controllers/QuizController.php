@@ -6,8 +6,13 @@ use App\Models\Quiz;
 use App\Models\TrueFalseQuestion;
 use Illuminate\Http\Request;
 
-class QuizController
+class QuizController extends Controller
 {
+    public function __invoke()
+    {
+        // TODO: Implement __invoke() method.
+    }
+
     public function test()
     {
         $quiz = Quiz::create([
@@ -22,7 +27,7 @@ class QuizController
             'validity' => true
         ]);
 
-        return "success";
+        return response() -> json($quiz);
     }
 
     public function store()
