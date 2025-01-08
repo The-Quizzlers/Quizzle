@@ -12,6 +12,24 @@ const routes = [
         name: 'Quiz',
         component: () => import('../views/Quiz.vue')
     },
+    {
+        path: '/profile',
+        name: 'Profile',
+        component: () => import('../views/Profile.vue')
+    },
+    {
+        path: '/register',
+        name: 'Register',
+        component: () => import('../views/Register.vue')
+    },
+    {
+        path: '/creation',
+        name: 'Creation',
+        component: () => import('../views/Creation.vue')
+    },
+    {
+        
+    }
 ]   
 
 const router = createRouter({    

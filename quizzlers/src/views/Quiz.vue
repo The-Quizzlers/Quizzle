@@ -1,3 +1,5 @@
 <template>
-    kokot pica
+    <div>
+        kokot
+    </div>
 </template>
