@@ -15,16 +15,6 @@ export default {
     goToQuiz() {
       this.$router.push({ name: 'Quiz' });
     },
-<<<<<<< Updated upstream
-    kokot() {
-      axios.put('http://localhost/backend/test', {})
-        .then(response => {
-          console.log(response);
-        })
-        .catch(error => {
-          console.error(error);
-        });
-=======
     test() {
       const base_url = "http://localhost:8000";
       console.log(axios.get(`${base_url}/api/get-message`));
@@ -34,7 +24,6 @@ export default {
     //     method: "post",
     //     url: "http://localhost:5173/backend/test"
     //   }));
->>>>>>> Stashed changes
     }
   }
 }
@@ -49,7 +38,6 @@ export default {
     <button class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">
       <router-link to="/quiz">quiz</router-link>
     </button>
-<<<<<<< Updated upstream
     <button @click="kokot" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">
       kokot (axios test)
     </button>
@@ -62,10 +50,8 @@ export default {
 
     <Card></Card>
     <Foot></Foot>
-=======
     <button @click="test()">
       KOKOT
     </button>
->>>>>>> Stashed changes
   </div>
 </template>
