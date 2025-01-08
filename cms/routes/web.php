@@ -5,7 +5,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\QuizController;
 
 
-Route::get('/api/get-message',[QuizController::class, 'test']);
+Route::get('/api/test',[QuizController::class, 'test']);
+Route::get('/api/data_test',[QuizController::class, 'dataTest']);
 
 
 Route::get('/', function () {

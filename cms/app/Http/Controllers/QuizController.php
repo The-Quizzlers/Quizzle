@@ -29,6 +29,16 @@ class QuizController extends Controller
 
         return response() -> json($quiz);
     }
+    public function dataTest($data)
+    {
+        $quiz = Quiz::create([
+            'category' => $data->category,
+            'name' => $data->name,
+            'public' => $data->public
+        ]);
+
+        return response() -> json($quiz);
+    }
 
     public function store()
     {
