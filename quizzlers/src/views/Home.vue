@@ -16,14 +16,10 @@ export default {
       this.$router.push({ name: 'Quiz' });
     },
     test() {
-      const base_url = "http://localhost:8000";
-      console.log(axios.get(`${base_url}/api/get-message`));
-    // test() {
-    //   console.log("KOKOT");
-    //   console.log(axios({
-    //     method: "post",
-    //     url: "http://localhost:5173/backend/test"
-    //   }));
+      console.log(axios.get(`/api/get-message`));;
+    },
+    dataTest() {
+
     }
   }
 }
@@ -48,10 +44,10 @@ export default {
       <router-link to="/register">register</router-link>
     </button>   
 
+      <button @click="test()">
+        KOKOT
+      </button>
     <Card></Card>
     <Foot></Foot>
-    <button @click="test()">
-      KOKOT
-    </button>
   </div>
 </template>

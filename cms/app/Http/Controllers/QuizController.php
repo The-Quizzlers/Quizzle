@@ -8,11 +8,10 @@ use Illuminate\Http\Request;
 
 class QuizController extends Controller
 {
-    public function __invoke()
+    public function store($data)
     {
-        // TODO: Implement __invoke() method.
-    }
 
+    }
     public function test()
     {
         $quiz = Quiz::create([
@@ -29,19 +28,21 @@ class QuizController extends Controller
 
         return response() -> json($quiz);
     }
-    public function dataTest($data)
+    public function dataTest()
     {
-        $quiz = Quiz::create([
-            'category' => $data->category,
-            'name' => $data->name,
-            'public' => $data->public
+        $validated = request()->validate([
+            'category' => 'required|min:3|max:40',
+            'name' => 'required|min:3|max:80',
+            'public' => 'required'
         ]);
 
-        return response() -> json($quiz);
+        $quiz = Quiz::create([
+            'category' => $validated['category'],
+            'name' => $validated['name'],
+            'public' => $validated['public']
+        ]);
+        
+        return view('welcome');
     }
 
-    public function store()
-    {
-
-    }
 }
