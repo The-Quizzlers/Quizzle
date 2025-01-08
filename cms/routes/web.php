@@ -11,7 +11,7 @@ Route::post('/api/data_test',[QuizController::class, 'dataTest']) ->name("test_d
 // homepage
 Route::get('/', function () {
     return view('welcome');
-});
+}) -> name("/");
 
 // routes fr
 Route::group(['prefix' => '/api'], function () {

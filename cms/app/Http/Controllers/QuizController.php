@@ -41,7 +41,7 @@ class QuizController extends Controller
             'name' => $validated['name'],
             'public' => $validated['public']
         ]);
-        
+
         return view('welcome');
     }
 
