@@ -1,15 +1,24 @@
 <template>
-    <nav class="navbar">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="#">
-                Quizzle
+    <nav>
+        <div class="bg-white text-black p-4 flex justify-between">
+            <div class="flex items-center space-x-8 mx-auto">
+            <a class="text-black no-underline hover:underline" href="#">
+                Create
             </a>
-        </div>
-        <div class="navbar-menu">
-            <div class="navbar-start">
-                <button class="mt-4 px-4 py-2">
-                    <router-link to="/creation">creation</router-link>    
-                </button>
+            <a class="text-black no-underline hover:underline" href="#">
+                Forums
+            </a>
+            <a class="text-black no-underline hover:underline" href="#">
+                Random Quiz
+            </a>
+            </div>
+            <div class="flex items-center space-x-4">
+            <button class="text-black no-underline hover:underline">
+                <router-link to="/register">Register</router-link>
+            </button>
+            <button class="text-black no-underline hover:underline">
+                <router-link to="/login">Log in</router-link>
+            </button>
             </div>
         </div>
     </nav>
@@ -20,21 +29,3 @@ export default {
     name: 'NavBar'
 }
 </script>
-
-<style scoped>
-.navbar {
-    background-color: #333;
-    color: white;
-    padding: 1rem;
-}
-
-.navbar-item {
-    color: white;
-    margin-right: 1rem;
-    text-decoration: none;
-}
-
-.navbar-item:hover {
-    text-decoration: underline;
-}
-</style>
