@@ -1,6 +1,7 @@
 <template>
-    <div class="flex justify-center items-center min-h-screen bg-gray-100">
-        <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+    <div class="flex justify-center items-center min-h-screen bg-[gray-100] py-10">
+        <div class="w-48 h-48 bg-gray-400 rounded-3xl mb-8 opacity-25 transform rotate-45 absolute -left-24"></div>
+        <div class="bg-white p-8 rounded-2xl shadow-md w-full max-w-md">
             <h2 class="text-3xl font-semibold mb-5 text-center">Register</h2>
             <form @submit.prevent="register" class="flex flex-col">
                 <!-- Agreement Text -->
@@ -38,14 +39,14 @@
                     <div class="flex-grow h-px bg-gray-300"></div>
                 </div>
                 <!-- Input Fields -->
-                <label for="username" class="text-black mb-1">Username</label>
+                <label for="username" class="text-black mb-1 ">Username</label>
                 <input 
                     id="username" 
                     type="text" 
                     v-model="username" 
                     placeholder="george_droyd1488" 
                     required 
-                    class="mb-4 p-3 text-sm border border-gray-300 rounded-lg placeholder-gray-400" 
+                    class="mb-3 p-2 text-sm border border-gray-300 rounded placeholder-gray-400" 
                 />
                 <label for="email" class="text-black mb-1">Email</label>
                 <input 
@@ -54,46 +55,27 @@
                     v-model="email" 
                     placeholder="example@gmail.com" 
                     required 
-                    class="mb-4 p-3 text-sm border border-gray-300 rounded-lg placeholder-gray-400" 
+                    class="mb-4 p-2 text-lg border border-gray-300 rounded placeholder-gray-400" 
                 />
                 <!-- Password Input with Toggle -->
                 <label for="password" class="text-black mb-1">Password</label>
-                <div class="relative mb-4">
-                    <input 
-                        id="password" 
-                        :type="showPassword ? 'text' : 'password'" 
-                        v-model="password" 
-                        placeholder="At least 8 characters" 
-                        required 
-                        class="w-full p-3 text-sm border border-gray-300 rounded-lg placeholder-gray-400 pr-12"
-                    />
-                    <span 
-                        class="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer text-lg font-bold transition-all duration-200 hover:scale-110"
-                        :class="showPassword ? 'text-black opacity-100' : 'text-gray-400 opacity-50'"
-                        @click="showPassword = !showPassword"
-                    >
-                        👁️‍🗨️
-                    </span>
-                </div>
-                <!-- Confirm Password Input with Toggle -->
+                <input 
+                    id="password" 
+                    type="password" 
+                    v-model="password" 
+                    placeholder="at least 8 characters" 
+                    required 
+                    class="mb-4 p-2 text-lg border border-gray-300 rounded placeholder-gray-400" 
+                />
                 <label for="confirmPassword" class="text-black mb-1">Confirm Password</label>
-                <div class="relative mb-4">
-                    <input 
-                        id="confirmPassword" 
-                        :type="showConfirmPassword ? 'text' : 'password'" 
-                        v-model="confirmPassword" 
-                        placeholder="Repeat your password" 
-                        required 
-                        class="w-full p-3 text-sm border border-gray-300 rounded-lg placeholder-gray-400 pr-12"
-                    />
-                    <span 
-                        class="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer text-lg font-bold transition-all duration-200 hover:scale-110"
-                        :class="showConfirmPassword ? 'text-black opacity-100' : 'text-gray-400 opacity-50'"
-                        @click="showConfirmPassword = !showConfirmPassword"
-                    >
-                        👁️‍🗨️
-                    </span>
-                </div>
+                <input 
+                    id="confirmPassword" 
+                    type="password" 
+                    v-model="confirmPassword" 
+                    placeholder="repeat your pasword" 
+                    required 
+                    class="mb-4 p-2 text-lg border border-gray-300 rounded placeholder-gray-400" 
+                />
                 <!-- Sign Up and Log In Buttons -->
                 <button 
                     type="submit" 
@@ -103,7 +85,7 @@
                 </button>
                 <button 
                     type="button" 
-                    class="w-full px-4 py-3 text-black bg-[#BBADFF] rounded-full opacity-30 cursor-pointer"
+                    class="w-full px-4 py-2 text-black bg-[#BBADFF] rounded-full opacity-30 cursor-pointer"
                 >
                     Log in instead
                 </button>
