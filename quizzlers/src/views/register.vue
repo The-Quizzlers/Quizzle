@@ -1,6 +1,7 @@
 <template>
-    <div class="flex justify-center items-center min-h-screen bg-gray-100">
-        <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+    <div class="flex justify-center items-center min-h-screen bg-[gray-100] py-10">
+        <div class="w-48 h-48 bg-gray-400 rounded-3xl mb-8 opacity-25 transform rotate-45 absolute -left-24"></div>
+        <div class="bg-white p-8 rounded-2xl shadow-md w-full max-w-md">
             <h2 class="text-3xl font-semibold mb-5 text-center">Register</h2>
             <form @submit.prevent="register" class="flex flex-col">
                 <!-- Agreement Text -->
@@ -38,14 +39,14 @@
                     <div class="flex-grow h-px bg-gray-300"></div>
                 </div>
                 <!-- Input Fields -->
-                <label for="username" class="text-black mb-1">Username</label>
+                <label for="username" class="text-black mb-1 ">Username</label>
                 <input 
                     id="username" 
                     type="text" 
                     v-model="username" 
                     placeholder="george_droyd1488" 
                     required 
-                    class="mb-4 p-2 text-lg border border-gray-300 rounded placeholder-gray-400" 
+                    class="mb-4 p-2 text-lg border border-gray-300 rounded-lg placeholder-gray-400" 
                 />
                 <label for="email" class="text-black mb-1">Email</label>
                 <input 
@@ -54,7 +55,7 @@
                     v-model="email" 
                     placeholder="example@gmail.com" 
                     required 
-                    class="mb-4 p-2 text-lg border border-gray-300 rounded placeholder-gray-400" 
+                    class="mb-4 p-2 text-lg border border-gray-300 rounded-lg placeholder-gray-400" 
                 />
                 <label for="password" class="text-black mb-1">Password</label>
                 <input 
@@ -63,7 +64,7 @@
                     v-model="password" 
                     placeholder="at least 8 characters" 
                     required 
-                    class="mb-4 p-2 text-lg border border-gray-300 rounded placeholder-gray-400" 
+                    class="mb-4 p-2 text-lg border border-gray-300 rounded-lg placeholder-gray-400" 
                 />
                 <label for="confirmPassword" class="text-black mb-1">Confirm Password</label>
                 <input 
@@ -72,7 +73,7 @@
                     v-model="confirmPassword" 
                     placeholder="repeat your pasword" 
                     required 
-                    class="mb-4 p-2 text-lg border border-gray-300 rounded placeholder-gray-400" 
+                    class="mb-4 p-2 text-lg border border-gray-300 rounded-lg placeholder-gray-400" 
                 />
                 <!-- Sign Up and Log In Buttons -->
                 <button 
@@ -83,7 +84,7 @@
                 </button>
                 <button 
                     type="button" 
-                    class="w-full px-4 py-2 text-black bg-[#BBADFF] rounded-full opacity-30 cursor-pointer"
+                    class="w-full px-4 py-2 text-gray-500 bg-[#EBE7FF] rounded-full cursor-pointer"
                 >
                     Log in instead
                 </button>
