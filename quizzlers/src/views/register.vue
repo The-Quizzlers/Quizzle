@@ -46,7 +46,7 @@
                     v-model="username" 
                     placeholder="george_droyd1488" 
                     required 
-                    class="mb-3 p-2 text-sm border border-gray-300 rounded placeholder-gray-400" 
+                    class="mb-4 p-2 text-sm border border-gray-300 rounded placeholder-gray-400" 
                 />
                 <label for="email" class="text-black mb-1">Email</label>
                 <input 
