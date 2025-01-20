@@ -11,22 +11,22 @@
                     </span>
                 </p>
                 <!-- Social Buttons -->
-                <div class="flex flex-col gap-3 mb-5">
+                <div class="flex flex-col gap-4 mb-5">
                     <button 
                         type="button" 
-                        class="w-full px-4 py-2 text-black text-xs bg-gray-200 rounded-full hover:bg-gray-300"
+                        class="w-full px-6 py-4 text-black text-xs bg-gray-200 rounded-full hover:bg-gray-300 mb-2"
                     >
                         Sign in with Google
                     </button>
                     <button 
                         type="button" 
-                        class="w-full px-4 py-2 text-black text-xs bg-gray-200 rounded-full hover:bg-gray-300"
+                        class="w-full px-6 py-4 text-black text-xs bg-gray-200 rounded-full hover:bg-gray-300 mb-2"
                     >
                         Sign in with Apple
                     </button>
                     <button 
                         type="button" 
-                        class="w-full px-4 py-2 text-black text-xs bg-gray-200 rounded-full hover:bg-gray-300"
+                        class="w-full px-6 py-4 text-black text-xs bg-gray-200 rounded-full hover:bg-gray-300"
                     >
                         Sign in with Facebook
                     </button>
@@ -45,7 +45,7 @@
                     v-model="username" 
                     placeholder="george_droyd1488" 
                     required 
-                    class="mb-4 p-2 text-lg border border-gray-300 rounded placeholder-gray-400" 
+                    class="mb-4 p-3 text-sm border border-gray-300 rounded-lg placeholder-gray-400" 
                 />
                 <label for="email" class="text-black mb-1">Email</label>
                 <input 
@@ -54,36 +54,56 @@
                     v-model="email" 
                     placeholder="example@gmail.com" 
                     required 
-                    class="mb-4 p-2 text-lg border border-gray-300 rounded placeholder-gray-400" 
+                    class="mb-4 p-3 text-sm border border-gray-300 rounded-lg placeholder-gray-400" 
                 />
+                <!-- Password Input with Toggle -->
                 <label for="password" class="text-black mb-1">Password</label>
-                <input 
-                    id="password" 
-                    type="password" 
-                    v-model="password" 
-                    placeholder="at least 8 characters" 
-                    required 
-                    class="mb-4 p-2 text-lg border border-gray-300 rounded placeholder-gray-400" 
-                />
+                <div class="relative mb-4">
+                    <input 
+                        id="password" 
+                        :type="showPassword ? 'text' : 'password'" 
+                        v-model="password" 
+                        placeholder="At least 8 characters" 
+                        required 
+                        class="w-full p-3 text-sm border border-gray-300 rounded-lg placeholder-gray-400 pr-12"
+                    />
+                    <span 
+                        class="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer text-lg font-bold transition-all duration-200 hover:scale-110"
+                        :class="showPassword ? 'text-black opacity-100' : 'text-gray-400 opacity-50'"
+                        @click="showPassword = !showPassword"
+                    >
+                        👁️‍🗨️
+                    </span>
+                </div>
+                <!-- Confirm Password Input with Toggle -->
                 <label for="confirmPassword" class="text-black mb-1">Confirm Password</label>
-                <input 
-                    id="confirmPassword" 
-                    type="password" 
-                    v-model="confirmPassword" 
-                    placeholder="repeat your pasword" 
-                    required 
-                    class="mb-4 p-2 text-lg border border-gray-300 rounded placeholder-gray-400" 
-                />
+                <div class="relative mb-4">
+                    <input 
+                        id="confirmPassword" 
+                        :type="showConfirmPassword ? 'text' : 'password'" 
+                        v-model="confirmPassword" 
+                        placeholder="Repeat your password" 
+                        required 
+                        class="w-full p-3 text-sm border border-gray-300 rounded-lg placeholder-gray-400 pr-12"
+                    />
+                    <span 
+                        class="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer text-lg font-bold transition-all duration-200 hover:scale-110"
+                        :class="showConfirmPassword ? 'text-black opacity-100' : 'text-gray-400 opacity-50'"
+                        @click="showConfirmPassword = !showConfirmPassword"
+                    >
+                        👁️‍🗨️
+                    </span>
+                </div>
                 <!-- Sign Up and Log In Buttons -->
                 <button 
                     type="submit" 
-                    class="w-full px-4 py-2 text-white bg-[#8E94F2] rounded-full transition duration-300 hover:opacity-90 mb-2"
+                    class="w-full px-4 py-3 text-white bg-[#8E94F2] rounded-full transition duration-300 hover:opacity-90 mb-2"
                 >
                     Sign up
                 </button>
                 <button 
                     type="button" 
-                    class="w-full px-4 py-2 text-black bg-[#BBADFF] rounded-full opacity-30 cursor-pointer"
+                    class="w-full px-4 py-3 text-black bg-[#BBADFF] rounded-full opacity-30 cursor-pointer"
                 >
                     Log in instead
                 </button>
@@ -99,7 +119,9 @@ export default {
             username: '',
             email: '',
             password: '',
-            confirmPassword: ''
+            confirmPassword: '',
+            showPassword: false,
+            showConfirmPassword: false
         };
     },
     methods: {
