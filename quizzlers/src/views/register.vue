@@ -1,13 +1,92 @@
 <template>
     <div class="flex justify-center items-center min-h-screen bg-gray-100">
-        <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-            <h2 class="text-2xl mb-5 text-center">Register</h2>
+        <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+            <h2 class="text-3xl font-semibold mb-5 text-center">Register</h2>
             <form @submit.prevent="register" class="flex flex-col">
-                <input type="text" v-model="username" placeholder="Username" required class="mb-4 p-2 text-lg border border-gray-300 rounded" />
-                <input type="email" v-model="email" placeholder="Email" required class="mb-4 p-2 text-lg border border-gray-300 rounded" />
-                <input type="password" v-model="password" placeholder="Password" required class="mb-4 p-2 text-lg border border-gray-300 rounded" />
-                <input type="password" v-model="confirmPassword" placeholder="Confirm Password" required class="mb-4 p-2 text-lg border border-gray-300 rounded" />
-                <button type="submit" class="p-3 text-lg cursor-pointer bg-blue-500 text-white rounded transition duration-300 hover:bg-green-600">Register</button>
+                <!-- Agreement Text -->
+                <p class="text-black text-xs text-center mb-4">
+                    By continuing you agree to our 
+                    <span class="font-bold underline cursor-pointer">
+                        Community Guidelines
+                    </span>
+                </p>
+                <!-- Social Buttons -->
+                <div class="flex flex-col gap-3 mb-5">
+                    <button 
+                        type="button" 
+                        class="w-full px-4 py-2 text-black text-xs bg-gray-200 rounded-full hover:bg-gray-300"
+                    >
+                        Sign in with Google
+                    </button>
+                    <button 
+                        type="button" 
+                        class="w-full px-4 py-2 text-black text-xs bg-gray-200 rounded-full hover:bg-gray-300"
+                    >
+                        Sign in with Apple
+                    </button>
+                    <button 
+                        type="button" 
+                        class="w-full px-4 py-2 text-black text-xs bg-gray-200 rounded-full hover:bg-gray-300"
+                    >
+                        Sign in with Facebook
+                    </button>
+                </div>
+                <!-- Divider -->
+                <div class="flex items-center my-4">
+                    <div class="flex-grow h-px bg-gray-300"></div>
+                    <span class="px-3 text-gray-500 text-sm">or</span>
+                    <div class="flex-grow h-px bg-gray-300"></div>
+                </div>
+                <!-- Input Fields -->
+                <label for="username" class="text-black mb-1">Username</label>
+                <input 
+                    id="username" 
+                    type="text" 
+                    v-model="username" 
+                    placeholder="george_droyd1488" 
+                    required 
+                    class="mb-4 p-2 text-lg border border-gray-300 rounded placeholder-gray-400" 
+                />
+                <label for="email" class="text-black mb-1">Email</label>
+                <input 
+                    id="email" 
+                    type="email" 
+                    v-model="email" 
+                    placeholder="example@gmail.com" 
+                    required 
+                    class="mb-4 p-2 text-lg border border-gray-300 rounded placeholder-gray-400" 
+                />
+                <label for="password" class="text-black mb-1">Password</label>
+                <input 
+                    id="password" 
+                    type="password" 
+                    v-model="password" 
+                    placeholder="at least 8 characters" 
+                    required 
+                    class="mb-4 p-2 text-lg border border-gray-300 rounded placeholder-gray-400" 
+                />
+                <label for="confirmPassword" class="text-black mb-1">Confirm Password</label>
+                <input 
+                    id="confirmPassword" 
+                    type="password" 
+                    v-model="confirmPassword" 
+                    placeholder="repeat your pasword" 
+                    required 
+                    class="mb-4 p-2 text-lg border border-gray-300 rounded placeholder-gray-400" 
+                />
+                <!-- Sign Up and Log In Buttons -->
+                <button 
+                    type="submit" 
+                    class="w-full px-4 py-2 text-white bg-[#8E94F2] rounded-full transition duration-300 hover:opacity-90 mb-2"
+                >
+                    Sign up
+                </button>
+                <button 
+                    type="button" 
+                    class="w-full px-4 py-2 text-black bg-[#BBADFF] rounded-full opacity-30 cursor-pointer"
+                >
+                    Log in instead
+                </button>
             </form>
         </div>
     </div>
@@ -37,4 +116,8 @@ export default {
 </script>
 
 <style scoped>
+/* Small, sharp drop shadow for the form container */
+.shadow-md {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
 </style>
