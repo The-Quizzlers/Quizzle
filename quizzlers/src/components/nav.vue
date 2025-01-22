@@ -1,26 +1,25 @@
 <template>
-    <nav class="bg-[#D4C2FF] text-white p-4">
-        <div class="flex items-center">
-            <a class="mr-4 no-underline hover:underline" href="#">
-                Quizzle
+    <nav>
+        <div class="bg-white text-black p-4 flex justify-between">
+            <div class="flex items-center space-x-8 mx-auto">
+            <a class="text-black no-underline hover:underline" href="#">
+                Create
             </a>
-            <ul class="flex items-center">
-                <li class="mr-4">
-                    <router-link to="/">Home</router-link>
-                </li>
-                <li class="mr-4">
-                    <router-link to="/quiz">Quiz</router-link>
-                </li>
-                <li class="mr-4">
-                    <router-link to="/profile">Profile</router-link>
-                </li>
-                <li class="mr-4">
-                    <router-link to="/register">Register</router-link>
-                </li>
-                <li class="mr-4">
-                    <router-link to="/login">Login</router-link>
-                </li>
-            </ul>
+            <a class="text-black no-underline hover:underline" href="#">
+                Forums
+            </a>
+            <a class="text-black no-underline hover:underline" href="#">
+                Random Quiz
+            </a>
+            </div>
+            <div class="flex items-center space-x-4">
+            <button class="border border-[#9FA0FF] text-[#  6768BF] no-underline hover:underline px-4 py-2 rounded-full">
+                <router-link to="/login">Log in</router-link>
+            </button>      
+            <button class="border border-[#9FA0FF] text-[#  6768BF] no-underline hover:underline px-4 py-2 rounded-full">
+                <router-link to="/register">Register</router-link>
+            </button>
+            </div>
         </div>
     </nav>
 </template>
