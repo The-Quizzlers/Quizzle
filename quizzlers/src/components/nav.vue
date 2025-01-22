@@ -1,16 +1,26 @@
 <template>
-    <nav class="navbar">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="#">
+    <nav class="bg-[#D4C2FF] text-white p-4">
+        <div class="flex items-center">
+            <a class="mr-4 no-underline hover:underline" href="#">
                 Quizzle
             </a>
-        </div>
-        <div class="navbar-menu">
-            <div class="navbar-start">
-                <button class="mt-4 px-4 py-2">
-                    <router-link to="/creation">creation</router-link>    
-                </button>
-            </div>
+            <ul class="flex items-center">
+                <li class="mr-4">
+                    <router-link to="/">Home</router-link>
+                </li>
+                <li class="mr-4">
+                    <router-link to="/quiz">Quiz</router-link>
+                </li>
+                <li class="mr-4">
+                    <router-link to="/profile">Profile</router-link>
+                </li>
+                <li class="mr-4">
+                    <router-link to="/register">Register</router-link>
+                </li>
+                <li class="mr-4">
+                    <router-link to="/login">Login</router-link>
+                </li>
+            </ul>
         </div>
     </nav>
 </template>
@@ -20,21 +30,3 @@ export default {
     name: 'NavBar'
 }
 </script>
-
-<style scoped>
-.navbar {
-    background-color: #333;
-    color: white;
-    padding: 1rem;
-}
-
-.navbar-item {
-    color: white;
-    margin-right: 1rem;
-    text-decoration: none;
-}
-
-.navbar-item:hover {
-    text-decoration: underline;
-}
-</style>

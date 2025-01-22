@@ -28,28 +28,7 @@ export default {
 <template>
   <div>
     <Nav></Nav>
-    <h1 class="text-3xl font-bold justify-self-center">
-      pica kokot kurva mac
-    </h1>
-    <button class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">
-      <router-link to="/quiz">quiz</router-link>
-    </button>
-    <button @click="kokot" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">
-      kokot (axios test)
-    </button>
-    <button class="mt-4 px-4 py-2">
-      <router-link to="/profile">profile</router-link>
-    </button>
-    <button class="mt-4 px-4 py-2">
-      <router-link to="/register">register</router-link>
-    </button>   
-    <button class="mt-4 px-4 py-2">
-      <router-link to="/login">login</router-link>
-    </button>   
-
-      <button @click="test()">
-        KOKOT
-      </button>
+    
     <Card></Card>
     <Foot></Foot>
   </div>
