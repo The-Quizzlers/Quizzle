@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Quiz;
 use App\Models\TrueFalseQuestion;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-
 class QuizController extends Controller
 {
     public function store($data)
@@ -26,23 +26,17 @@ class QuizController extends Controller
             'validity' => true
         ]);
 
-        return response() -> json($quiz);
+        return response()->json($quiz);
     }
-    public function dataTest()
+    public function dataTest(Request $request)
     {
-        $validated = request()->validate([
-            'category' => 'required|min:3|max:40',
-            'name' => 'required|min:3|max:80',
-            'public' => 'required'
-        ]);
-
         $quiz = Quiz::create([
-            'category' => $validated['category'],
-            'name' => $validated['name'],
-            'public' => $validated['public']
+            'category' => $request->category,
+            'name' => $request->name,
+            'public' => +$request->public
         ]);
 
-        return view('welcome');
+        return response() -> json($quiz);
     }
 
 }

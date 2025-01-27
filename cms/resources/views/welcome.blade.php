@@ -20,12 +20,12 @@
         @endif
     </head>
     <body class="">
-    <form method="post" action="{{route('test')}}">
+    <form method="get" action="{{ route('quiz.test') }}">
         @csrf
         <h3>Test creating quiz</h3>
          <button>send</button>
     </form>
-    <form method="post" action="{{route('test_data')}}" style="background: lightblue">
+    <form method="post" action="{{ route('data.test', ['category'=>"Test", 'name'=>"Test quiz", 'public'=>0]) }}" style="background: lightblue">
         @csrf
         <h3>Test sending data</h3>
         <label>Category</label>
