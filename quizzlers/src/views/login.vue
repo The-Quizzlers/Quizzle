@@ -5,7 +5,7 @@
     <div class="flex justify-center items-center min-h-screen bg-[gray-100] py-10">
         <div class="w-48 h-48 bg-gray-400 rounded-3xl mb-8 opacity-25 transform rotate-45 absolute -left-24"></div>
         <div class="bg-white p-8 rounded-2xl shadow-md w-full max-w-md">
-            <h2 class="text-3xl font-semibold mb-5 text-center">Register</h2>
+            <h2 class="text-3xl font-semibold mb-5 text-center">Log in</h2>
             <form @submit.prevent="register" class="flex flex-col">
                 <!-- Social Buttons -->
                 <div class="flex flex-col gap-3 mb-5">
@@ -13,19 +13,19 @@
                         type="button" 
                         class="w-full px-4 py-2 text-black text-xs bg-gray-200 rounded-full hover:bg-gray-300"
                     >
-                        Sign in with Google
+                        Log in with Google
                     </button>
                     <button 
                         type="button" 
                         class="w-full px-4 py-2 text-black text-xs bg-gray-200 rounded-full hover:bg-gray-300"
                     >
-                        Sign in with Apple
+                        Log in with Apple
                     </button>
                     <button 
                         type="button" 
                         class="w-full px-4 py-2 text-black text-xs bg-gray-200 rounded-full hover:bg-gray-300"
                     >
-                        Sign in with Facebook
+                        Log in with Facebook
                     </button>
                 </div>
                 <!-- Divider -->
@@ -58,13 +58,13 @@
                     type="submit" 
                     class="w-full px-4 py-2 text-white bg-[#8E94F2] rounded-full transition duration-300 hover:opacity-90 mb-2"
                 >
-                    Sign up
+                    Log in
                 </button>
                 <button 
                     type="button" 
                     class="w-full px-4 py-2 text-gray-500 bg-[#EBE7FF] rounded-full cursor-pointer"
                 >
-                    Log in instead
+                    Sign up instead
                 </button>
             </form>
         </div>
