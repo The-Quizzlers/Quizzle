@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class ConnectionQuestionController extends Controller
 {
-    public function store()
+    public function store(Request $request)
     {
         ConnectionQuestion::create([
             'question' => "test question",
