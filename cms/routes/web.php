@@ -5,13 +5,13 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\QuizController;
 
 // tests
-Route::get('/api/test',[QuizController::class, 'test']) ->name("test");
-Route::post('/api/data_test',[QuizController::class, 'dataTest']) ->name("test_data");
+Route::get('/api/tests/quiz', [QuizController::class, 'test']) ->name("quiz.test");
+Route::post('/api/dataTest', [QuizController::class, 'dataTest']) -> name("data.test");
 
 // homepage
 Route::get('/', function () {
     return view('welcome');
-});
+}) -> name("/");
 
 // routes fr
 Route::group(['prefix' => '/api'], function () {
