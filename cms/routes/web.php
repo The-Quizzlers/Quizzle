@@ -19,7 +19,7 @@ Route::group(['prefix' => '/api'], function () {
     // user routes
     Route::group(['prefix'=>'/auth', 'as' => 'auth.'], function (){
         Route::post("/register", [UserController::class, 'register']) -> name("register");
-        Route::post("/login", [UserController::class, 'authenticate']) -> name("authenticate");
+        Route::post("/login", [UserController::class, 'login']) -> name("login");
         Route::post("/logout", [UserController::class, 'logout']) -> name("logout");
     });
 
