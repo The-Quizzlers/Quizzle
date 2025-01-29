@@ -23,7 +23,7 @@ export default {
   <div>
     <Nav></Nav>
     <div class="flex flex-col items-center justify-center text-center h-screen">
-      <h1 class="font-medium pb-10 text-6xl">Welcome, n</h1>
+      <h1 class="font-medium pb-10 text-6xl">Welcome, nigga</h1>
       <p class="font-medium text-2xl max-w-2xl">
       “Master whatever you’re learning with Quizzle’s interactive flashcards, 
       practice tests and study activities.”

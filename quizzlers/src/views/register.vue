@@ -111,12 +111,11 @@
                 >
                     Sign up
                 </button>
-                <button 
-                    type="button" 
-                    class="w-full px-3 py-2 text-black bg-[#BBADFF] rounded-full opacity-30 cursor-pointer"
-                >
+                <router-link 
+                    class="w-full px-3 py-2 text-[#8E94F2] border border-[#8E94F2] bg-transparent rounded-full transition duration-300 hover:bg-[#8E94F2] hover:text-white cursor-pointer"
+                    to="/login">
                     Log in instead
-                </button>
+                </router-link>
             </form>
         </div>
     </div>
@@ -148,7 +147,7 @@ export default {
             method: "post",
             url: `http://127.0.0.1:8000/api/auth/register`,
             data: {
-              name: this.username,
+              username: this.username,
               email: this.email,
               password: this.password,
             },

@@ -77,14 +77,13 @@
                     type="submit" 
                     class="w-full px-3 py-2 text-white bg-[#8E94F2] rounded-full transition duration-300 hover:opacity-90 mb-2"
                 >
-                    Log up
+                    Log in
                 </button>
-                <button 
-                    type="button" 
+                <router-link 
                     class="w-full px-3 py-2 text-[#8E94F2] border border-[#8E94F2] bg-transparent rounded-full transition duration-300 hover:bg-[#8E94F2] hover:text-white cursor-pointer"
-                >
+                    to="/register">
                     Register instead
-                </button>
+                </router-link>
             </form>
         </div>
     </div>
