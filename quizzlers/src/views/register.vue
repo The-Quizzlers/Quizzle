@@ -55,7 +55,7 @@
                 <input 
                     id="username" 
                     type="text" 
-                    v-model="username" 
+                    v-model="username"
                     placeholder="george_droyd1488" 
                     required 
                     class="mb-3 p-2 text-xs border border-gray-300 rounded-md placeholder-gray-400"
@@ -146,7 +146,7 @@ export default {
                 let token = axios.defaults.headers.common['X-CSRF-TOKEN']
         axios({
             method: "post",
-            url: `http://localhost:8080/api/auth/register`,
+            url: `http://127.0.0.1:8000/api/auth/register`,
             data: {
               username: this.username,
               email: this.email,
