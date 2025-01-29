@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -21,14 +22,20 @@ class UserController extends Controller
     public function login(Request $request)
     {
         $validated = request()->validate([
-            'email' => $request->name,
+            'email' => $request->email,
             'password' => $request->password
         ]);
-        if (auth()->attempt($validated)) {
-            request()->session()->regenerate();
 
-            return redirect()->route('dashboard.index')->with('success', "Logged in successfully!");
+        if (auth()->attempt($validated)) {
+            $user = User::where([
+                'email' => $validated->email,
+                'password' => $validated->password
+            ])->get();
+
+            return response() -> json($user);
         }
+
+        return response("failed");
     }
     public function logout(Request $request)
     {
