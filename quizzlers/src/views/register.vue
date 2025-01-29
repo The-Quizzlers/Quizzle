@@ -55,7 +55,7 @@
                 <input 
                     id="username" 
                     type="text" 
-                    v-model="username" 
+                    v-model="username"
                     placeholder="george_droyd1488" 
                     required 
                     class="mb-3 p-2 text-xs border border-gray-300 rounded-md placeholder-gray-400"
