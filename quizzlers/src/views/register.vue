@@ -1,34 +1,31 @@
 <template>
     <div class="flex justify-center items-center min-h-screen bg-gray-100 py-10 relative overflow-hidden">
-        <!-- Background Elements with Random Rotation -->
         <div 
             class="w-36 h-36 bg-gray-400 rounded-2xl opacity-50 transform rotate-[random(10deg,50deg)] absolute -left-12 bottom-8" 
             style="transform: rotate(45deg);"
-        ></div> <!-- Square moved slightly higher -->
+        ></div> 
         <div 
             class="w-36 h-36 bg-gray-400 rounded-full opacity-20 absolute top-8 left-8 transform -translate-x-1/2" 
             style="transform: rotate(35deg);"
-        ></div> <!-- Circle with random rotation -->
+        ></div>
         <div 
             class="w-32 h-32 bg-gray-400 rounded-2xl opacity-40 transform rotate-45 absolute top-16 right-0 translate-x-1/2"
             style="transform: rotate(23deg);"
-        ></div> <!-- Square moved to the right with slight random rotation -->
+        ></div>
         <div 
             class="w-40 h-40 bg-gray-400 rounded-2xl opacity-30 transform rotate-45 absolute bottom-8 right-8 translate-x-1/2" 
             style="transform: rotate(68deg);"
-        ></div> <!-- Lower square rotated and moved to the right -->
+        ></div>
 
         <div class="bg-white p-6 rounded-xl shadow-md w-full max-w-sm relative">
             <h2 class="text-2xl font-semibold mb-4 text-center">Register</h2>
             <form @submit.prevent="register" class="flex flex-col">
-                <!-- Agreement Text -->
                 <p class="text-black text-xs text-center mb-3">
                     By continuing you agree to our 
                     <span class="font-bold underline cursor-pointer">
                         Community Guidelines
                     </span>
                 </p>
-                <!-- Social Buttons -->
                 <div class="flex flex-col gap-3 mb-4">
                     <button 
                         type="button" 
@@ -49,13 +46,11 @@
                         Sign in with Facebook
                     </button>
                 </div>
-                <!-- Divider -->
                 <div class="flex items-center my-3">
                     <div class="flex-grow h-px bg-gray-300"></div>
                     <span class="px-2 text-gray-500 text-xs">or</span>
                     <div class="flex-grow h-px bg-gray-300"></div>
                 </div>
-                <!-- Input Fields -->
                 <label for="username" class="text-black mb-1 text-sm">Username</label>
                 <input 
                     id="username" 
@@ -74,7 +69,6 @@
                     required 
                     class="mb-3 p-2 text-xs border border-gray-300 rounded-md placeholder-gray-400"
                 />
-                <!-- Password Input with Toggle -->
                 <label for="password" class="text-black mb-1 text-sm">Password</label>
                 <div class="relative mb-3">
                     <input 
@@ -93,7 +87,6 @@
                         👁️‍🗨️
                     </span>
                 </div>
-                <!-- Confirm Password Input with Toggle -->
                 <label for="confirmPassword" class="text-black mb-1 text-sm">Confirm Password</label>
                 <div class="relative mb-3">
                     <input 
@@ -112,7 +105,6 @@
                         👁️‍🗨️
                     </span>
                 </div>
-                <!-- Sign Up and Log In Buttons -->
                 <button 
                     type="submit" 
                     class="w-full px-3 py-2 text-white bg-[#8E94F2] rounded-full transition duration-300 hover:opacity-90 mb-2"
@@ -131,6 +123,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     data() {
         return {
@@ -143,20 +137,35 @@ export default {
         };
     },
     methods: {
-        register() {
+        async register() {
             if (this.password !== this.confirmPassword) {
                 alert("Passwords do not match!");
                 return;
             }
-            // Handle registration logic here
-            console.log("User registered:", this.username, this.email);
+            try {
+                let token = axios.defaults.headers.common['X-CSRF-TOKEN']
+        axios({
+            method: "post",
+            url: `http://localhost:8080/api/auth/register`,
+            data: {
+              username: this.username,
+              email: this.email,
+              password: this.password,
+            },
+            xsrfCookieName: "XSRF-TOKEN",
+            xsrfHeaderName: "X-XSRF-TOKEN"
+        }).then((response) => {
+          console.log(response);
+        });
+            } catch (error) {
+                console.error(error);
+            }
         }
     }
 };
 </script>
 
 <style scoped>
-/* Small, sharp drop shadow for the form container */
 .shadow-md {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }

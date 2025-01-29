@@ -43,7 +43,7 @@ export default {
           .get( `http://127.0.0.1:8000/api/tests/quiz`)
           .then((response) => {
           console.log(response);
-          });
+          }); 
     }
   }
 }
