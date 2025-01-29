@@ -146,9 +146,9 @@ export default {
                 let token = axios.defaults.headers.common['X-CSRF-TOKEN']
         axios({
             method: "post",
-            url: `http://localhost:8080/api/auth/register`,
+            url: `http://127.0.0.1:8000/api/auth/register`,
             data: {
-              username: this.username,
+              name: this.username,
               email: this.email,
               password: this.password,
             },
