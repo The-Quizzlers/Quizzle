@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Quiz extends Model
 {
@@ -13,15 +15,15 @@ class Quiz extends Model
         'views',
         'favourites'
         ];
-    public function choiceQuestions()
+    public function choiceQuestions(): HasMany
     {
         return $this->hasMany(ChoiceQuestion::class, 'quiz_id', 'id');
     }
-    public function TFQuestions()
+    public function TFQuestions(): HasMany
     {
         return $this->hasMany(TrueFalseQuestion::class, 'quiz_id', 'id');
     }
-    public function connectQuestions()
+    public function connectQuestions(): HasMany
     {
         return $this->hasMany(ConnectionQuestion::class, 'quiz_id', 'id');
     }

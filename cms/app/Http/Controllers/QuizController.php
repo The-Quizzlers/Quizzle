@@ -4,11 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Models\Quiz;
 use App\Models\TrueFalseQuestion;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 class QuizController extends Controller
 {
-    public function store($data)
+    public function store(Request $request)
+    {
+
+    }
+    public function get_quiz(Request $request)
+    {
+        $quiz = Quiz::query()->orderBy('id', 'DESC');
+        $quiz = $quiz->where('id', $request->id)->get();
+
+        $TF = TrueFalseQuestion::where('quiz_id', $request->id)->get();
+
+
+        return response() -> json($quiz);
+    }
+    public function delete(Request $request)
+    {
+
+    }
+    public function placeholder(Request $request)
     {
 
     }

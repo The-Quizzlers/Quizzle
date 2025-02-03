@@ -15,6 +15,14 @@ Route::get('/', function () {
 
 // routes fr
 Route::group(['prefix' => '/api'], function () {
+    // quizzing
+    Route::group(['prefix'=>'/quiz', 'as' => 'quiz.'], function (){
+        Route::controller(QuizController::class)->group(function () {
+            Route::post("/create", 'store') ->name("store");
+            Route::get("/get", 'get_quiz') ->name("get");
+            Route::delete("/delete", 'delete') ->name("delete");
+        });
+    });
 
     // user routes
     Route::group(['prefix'=>'/auth', 'as' => 'auth.'], function (){

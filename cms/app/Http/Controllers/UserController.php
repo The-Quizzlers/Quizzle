@@ -21,16 +21,18 @@ class UserController extends Controller
     }
     public function login(Request $request)
     {
-        $validated = request()->validate([
-            'email' => $request->email,
-            'password' => $request->password
-        ]);
+//        $validated = request()->validate([
+//            'email' => $request->email,
+//            'password' => $request->password
+//        ]);
+        $credentials = [
+            $request->email,
+            $request->password
+        ];
+        //return response()->json($credentials);
 
-        if (auth()->attempt($validated)) {
-            $user = User::where([
-                'email' => $validated->email,
-                'password' => $validated->password
-            ])->get();
+        if (auth()->attempt($credentials)) {
+            $user = User::where('email', $request->email)->get();
 
             return response() -> json($user);
         }
