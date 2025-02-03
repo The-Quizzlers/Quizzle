@@ -32,9 +32,6 @@ export default {
           <div class="flex-grow h-px bg-gray-300"></div>
       </div>
     </div>
-    <h1 class="text-3xl font-bold justify-self-center">
-      pica kokot kurva mac
-    </h1>
     <button class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">
       <router-link to="/quiz">quiz</router-link>
     </button>
