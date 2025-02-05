@@ -16,6 +16,7 @@ class QuestionController extends Controller
             'validity' => +$request->true,
             'quiz_id' => $request->quiz_id
         ]);
+        return response()->json($TF);
     }
     public function choice(Request $request)
     {
@@ -26,6 +27,7 @@ class QuestionController extends Controller
             'answers' => $request->answers,
             'correct_answers'=> $request->correct_answers
         ]);
+        return response()->json($Choice);
     }
     public function connect(Request $request)
     {
@@ -35,5 +37,7 @@ class QuestionController extends Controller
             'second_half' => $request->second_half,
             'quiz_id' => $request->quiz_id
         ]);
+        return response()->json($Connect);
+
     }
 }
