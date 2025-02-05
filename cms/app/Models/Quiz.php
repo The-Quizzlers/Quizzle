@@ -13,7 +13,8 @@ class Quiz extends Model
         'category',
         'name',
         'views',
-        'favourites'
+        'favourites',
+        'user_id'
         ];
     public function choiceQuestions(): HasMany
     {
