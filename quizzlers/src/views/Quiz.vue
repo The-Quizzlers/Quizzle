@@ -20,6 +20,18 @@
         <input type="checkbox" name="public" v-model="isPublic">
         <button @click="create_quiz_test()">send</button>
       </form>
+
+      <form method="post" onsubmit="return false" style="background: lightblue">
+
+        <h3>Test sending data</h3>
+        <label>username</label>
+        <input type="text" name="category" v-model="username">
+        <label>email</label>
+        <input type="text" name="name" v-model="email">
+        <label>password</label>
+        <input type="text" name="public" v-model="password">
+        <button @click="register_test()">send</button>
+      </form>
     </div>
 </template>
 <script>
@@ -36,7 +48,9 @@ export default {
       category: "",
       isPublic: false,
       username: "",
-      quiz_id: null
+      quiz_id: null,
+      email: "",
+      password: "",
     }
   },
   methods: {
@@ -61,6 +75,21 @@ export default {
         url: `http://127.0.0.1:8000/api/quiz/get`,
         params: {
           id: this.quiz_id
+        },
+        xsrfCookieName: "XSRF-TOKEN",
+        xsrfHeaderName: "X-XSRF-TOKEN"
+      }).then((response) => {
+        console.log(response);
+      });
+    },
+    register_test() {
+      axios({
+        method: "post",
+        url: `http://127.0.0.1:8000/api/auth/register`,
+        data: {
+          username: this.username,
+          email: this.email,
+          password: this.password
         },
         xsrfCookieName: "XSRF-TOKEN",
         xsrfHeaderName: "X-XSRF-TOKEN"
