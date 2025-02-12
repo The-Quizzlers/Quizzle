@@ -29,13 +29,17 @@ Route::group(['prefix' => '/api'], function () {
             Route::post("/trueFalse", 'trueFalse') ->name("trueFalse");
             Route::post("/choice", 'choice') ->name("choice");
             Route::post("/connect", 'connect') ->name("connect");
+            Route::get("/top", '@get_top')->name("top");
         });
     });
     // user routes
     Route::group(['prefix'=>'/auth', 'as' => 'auth.'], function (){
-        Route::post("/register", [UserController::class, 'register']) -> name("register");
-        Route::post("/login", [UserController::class, 'login']) -> name("login");
-        Route::post("/logout", [UserController::class, 'logout']) -> name("logout");
+        Route::controller(UserController::class)->group(function () {
+            Route::post("/register", 'register')->name("register");
+            Route::get("/login", 'login')->name("login");
+            Route::post("/logout", 'logout')->name("logout");
+            Route::post("/level", 'level')->name("level");
+            });
     });
 
 

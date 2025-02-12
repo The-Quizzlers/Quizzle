@@ -34,6 +34,30 @@ class UserController extends Controller
 
         return response("failed");
     }
+
+    public function level(Request $request)
+    {
+        $user = $request->user;
+        $xp = $request->correct + $user->XP;
+
+        if ($xp >= 100) {
+            $newXP = $xp % 100;
+            $level = ($xp - $newXP) / 100;
+
+            User::where('id', $user->id)
+                ->update([
+                'XP' => $newXP,
+                'level' => $level
+                ]);
+        } else {
+            User::where('id', $user->id)
+                ->update([
+                'XP' => $xp
+            ]);
+        }
+
+        return response()->json($user);
+    }
     public function logout(Request $request)
     {
     }

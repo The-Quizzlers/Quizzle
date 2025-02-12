@@ -23,7 +23,7 @@
 
       <form method="post" onsubmit="return false" style="background: lightblue">
 
-        <h3>Test sending data</h3>
+        <h3>Test register</h3>
         <label>username</label>
         <input type="text" name="category" v-model="username">
         <label>email</label>
@@ -31,6 +31,28 @@
         <label>password</label>
         <input type="text" name="public" v-model="password">
         <button @click="register_test()">send</button>
+      </form>
+
+      <form method="get" onsubmit="return false" style="background: lightblue">
+
+        <h3>Test login</h3>
+        <label>username</label>
+        <input type="text" name="category" v-model="username">
+        <label>email</label>
+        <input type="text" name="name" v-model="email">
+        <label>password</label>
+        <input type="text" name="public" v-model="password">
+        <button @click="login_test()">send</button>
+      </form>
+
+      <form method="post" onsubmit="return false" style="background: lightblue">
+
+        <h3>Test leveling</h3>
+        <label>correct answers</label>
+        <input type="number" v-model="correct">
+        <label>user id</label>
+        <input type="number" v-model="user_id">
+        <button @click="level_up()">send</button>
       </form>
     </div>
 </template>
@@ -51,6 +73,8 @@ export default {
       quiz_id: null,
       email: "",
       password: "",
+      correct: 0,
+      user_id: 0
     }
   },
   methods: {
@@ -90,6 +114,34 @@ export default {
           username: this.username,
           email: this.email,
           password: this.password
+        },
+        xsrfCookieName: "XSRF-TOKEN",
+        xsrfHeaderName: "X-XSRF-TOKEN"
+      }).then((response) => {
+        console.log(response);
+      });
+    },
+    login_test() {
+      axios({
+        method: "get",
+        url: `http://127.0.0.1:8000/api/auth/login`,
+        params: {
+          email: this.email,
+          password: this.password
+        },
+        xsrfCookieName: "XSRF-TOKEN",
+        xsrfHeaderName: "X-XSRF-TOKEN"
+      }).then((response) => {
+        console.log(response);
+      });
+    },
+    level_up() {
+      axios({
+        method: "post",
+        url: `http://127.0.0.1:8000/api/auth/level`,
+        params: {
+          id: this.user_id,
+          correct: this.correct,
         },
         xsrfCookieName: "XSRF-TOKEN",
         xsrfHeaderName: "X-XSRF-TOKEN"
