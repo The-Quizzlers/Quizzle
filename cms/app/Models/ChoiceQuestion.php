@@ -14,8 +14,4 @@ class ChoiceQuestion extends Model
         'correct_answers'
     ];
 
-    public function quiz()
-    {
-        return $this->belongsTo(Quiz::class);
-    }
 }

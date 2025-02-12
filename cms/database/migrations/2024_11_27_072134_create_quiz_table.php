@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('quizzes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->default(0)->constrained('users')->cascadeOnDelete();
             $table->boolean('public')->default(false);
             $table->string('category');
             $table->string('name');

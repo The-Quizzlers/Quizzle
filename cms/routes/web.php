@@ -15,7 +15,22 @@ Route::get('/', function () {
 
 // routes fr
 Route::group(['prefix' => '/api'], function () {
-
+    // quizzing
+    Route::group(['prefix'=>'/quiz', 'as' => 'quiz.'], function (){
+        Route::controller(QuizController::class)->group(function () {
+            Route::post("/create", 'store') ->name("store");
+            Route::get("/get", 'get_quiz') ->name("get");
+            Route::delete("/delete", 'delete') ->name("delete");
+        });
+    });
+    // creating questions
+    Route::group(['prefix' => '/create', 'as' => 'create.'], function (){
+        Route::controller(QuizController::class)->group(function () {
+            Route::post("/TrueFalse", 'trueFalse') ->name("trueFalse");
+            Route::post("/Choice", 'choice') ->name("choice");
+            Route::post("/Connect", 'connect') ->name("connect");
+        });
+    });
     // user routes
     Route::group(['prefix'=>'/auth', 'as' => 'auth.'], function (){
         Route::post("/register", [UserController::class, 'register']) -> name("register");

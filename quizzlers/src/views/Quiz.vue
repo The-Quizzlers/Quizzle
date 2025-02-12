@@ -1,16 +1,12 @@
 <template>
     <div>
-        Test (for now nigga)
-      <form method="post" onsubmit="return false" style="background: lightblue">
+        Tests (for now)
+      <form method="get" onsubmit="return false" style="background: lightblue">
 
         <h3>Test sending data</h3>
-        <label>Category</label>
-        <input type="text" name="category" v-model="category">
-        <label>Name</label>
-        <input type="text" name="name" v-model="name">
-        <label>Public</label>
-        <input type="checkbox" name="public" v-model="isPublic">
-        <button @click="create_quiz_test()">send</button>
+        <label>ID</label>
+        <input type="number" name="category" v-model="quiz_id">
+        <button @click="get_quiz()">get</button>
       </form>
 
       <form method="post" onsubmit="return false" style="background: lightblue">
@@ -40,6 +36,7 @@ export default {
       category: "",
       isPublic: false,
       username: "",
+      quiz_id: null
     }
   },
   methods: {
@@ -51,6 +48,19 @@ export default {
           category: this.category,
           name: this.name,
           public: this.isPublic,
+        },
+        xsrfCookieName: "XSRF-TOKEN",
+        xsrfHeaderName: "X-XSRF-TOKEN"
+      }).then((response) => {
+        console.log(response);
+      });
+    },
+    get_quiz() {
+      axios({
+        method: "get",
+        url: `http://127.0.0.1:8000/api/quiz/get`,
+        params: {
+          id: this.quiz_id
         },
         xsrfCookieName: "XSRF-TOKEN",
         xsrfHeaderName: "X-XSRF-TOKEN"
