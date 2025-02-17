@@ -53,7 +53,7 @@ export default {
             quizSubmitted: true,
             questions: [],
             selectedElement: '',
-            questionSubmitted: false,
+            questionSubmitted: true,
             isSubmitting: false
         };
     },
@@ -72,21 +72,21 @@ export default {
                 questions: this.questions
             };
 
-            axios.post('http://127.0.0.1:8000/api/quiz/create', quizData)
+            axios.post('http://127.0.0.1:8000/api/quiz/create/choice', quizData)
                 .then(response => {
                     console.log('Success:', response.data);
                     this.quizSubmitted = true;
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                });
+                }); 
         },
         selectElement(element) {
             this.selectedElement = element;
         },
         handleQuestionSubmitted(question) {
             this.isSubmitting = true;
-            axios.post('http://127.0.0.1:8000/api/question/create', question)
+            axios.post('http://127.0.0.1:8000/api/create/choice', question)
                 .then(response => {
                     console.log('Question submitted:', response.data);
                     this.questions.push(question);

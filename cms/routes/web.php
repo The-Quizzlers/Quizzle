@@ -26,9 +26,9 @@ Route::group(['prefix' => '/api'], function () {
     // creating questions
     Route::group(['prefix' => '/create', 'as' => 'create.'], function (){
         Route::controller(QuizController::class)->group(function () {
-            Route::post("/TrueFalse", 'trueFalse') ->name("trueFalse");
-            Route::post("/Choice", 'choice') ->name("choice");
-            Route::post("/Connect", 'connect') ->name("connect");
+            Route::post("/trueFalse", 'trueFalse') ->name("trueFalse");
+            Route::post("/choice", 'choice') ->name("choice");
+            Route::post("/connect", 'connect') ->name("connect");
         });
     });
     // user routes
