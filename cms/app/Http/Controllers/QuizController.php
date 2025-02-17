@@ -21,6 +21,10 @@ class QuizController extends Controller
             'quiz' => $quiz
         ]);
     }
+    public function get_top()
+    {
+
+    }
     public function get_quiz(Request $request)
     {
         $quiz = Quiz::where('id', $request->id)->get();
