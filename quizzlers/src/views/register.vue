@@ -112,7 +112,7 @@
                     Sign up
                 </button>
                 <router-link 
-                    class="w-full px-3 py-2 text-[#8E94F2] border border-[#8E94F2] bg-transparent rounded-full transition duration-300 hover:bg-[#8E94F2] hover:text-white cursor-pointer"
+                    class="w-full px-3 py-2 text-[#8E94F2] border border-[#8E94F2] text-center bg-transparent rounded-full transition duration-300 hover:bg-[#8E94F2] hover:text-white cursor-pointer"
                     to="/login">
                     Log in instead
                 </router-link>
