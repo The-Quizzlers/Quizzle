@@ -47,11 +47,9 @@
 
       <form method="post" onsubmit="return false" style="background: lightblue">
 
-        <h3>Test leveling</h3>
+        <h3>Test leveling (do login first)</h3>
         <label>correct answers</label>
         <input type="number" v-model="correct">
-        <label>user id</label>
-        <input type="number" v-model="user_id">
         <button @click="level_up()">send</button>
       </form>
     </div>
@@ -74,7 +72,8 @@ export default {
       email: "",
       password: "",
       correct: 0,
-      user_id: 0
+      user_id: 0,
+      user: undefined
     }
   },
   methods: {
@@ -132,15 +131,16 @@ export default {
         xsrfCookieName: "XSRF-TOKEN",
         xsrfHeaderName: "X-XSRF-TOKEN"
       }).then((response) => {
-        console.log(response);
+        this.user = response.data.user[0];
+        console.log(this.user);
       });
     },
     level_up() {
       axios({
         method: "post",
         url: `http://127.0.0.1:8000/api/auth/level`,
-        params: {
-          id: this.user_id,
+        data: {
+          user: this.user,
           correct: this.correct,
         },
         xsrfCookieName: "XSRF-TOKEN",

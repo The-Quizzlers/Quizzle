@@ -17,7 +17,9 @@ class UserController extends Controller
             'password' => Hash::make($request->password)
         ]);
 
-        return response()->json($user);
+        return response() -> json([
+            'user' => $user,
+        ]);
     }
     public function login(Request $request)
     {
@@ -29,7 +31,9 @@ class UserController extends Controller
         if (auth()->attempt($validated)) {
             $user = User::where('email', $request->email)->get();
 
-            return response() -> json($user);
+            return response() -> json([
+                'user' => $user,
+            ]);
         }
 
         return response("failed");
@@ -38,25 +42,30 @@ class UserController extends Controller
     public function level(Request $request)
     {
         $user = $request->user;
-        $xp = $request->correct + $user->XP;
+        //return response()->json($user['XP']);
+        $xp = $request->correct + $user['XP'];
+        $id = $user['id'];
 
         if ($xp >= 100) {
             $newXP = $xp % 100;
             $level = ($xp - $newXP) / 100;
 
-            User::where('id', $user->id)
+             User::where('id', $id)
                 ->update([
                 'XP' => $newXP,
-                'level' => $level
+                'level' => $level + $user['level']
                 ]);
         } else {
-            User::where('id', $user->id)
+            User::where('id', $id)
                 ->update([
                 'XP' => $xp
             ]);
         }
+        $user = User::where('id', $id)->get();
 
-        return response()->json($user);
+        return response() -> json([
+            'user' => $user,
+        ]);
     }
     public function logout(Request $request)
     {
