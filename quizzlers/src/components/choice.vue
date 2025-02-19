@@ -8,7 +8,8 @@
             <input type="text" v-model="question.correctAnswer" placeholder="Enter correct answer" class="w-full p-2 mb-2 border border-gray-300 rounded-md placeholder-gray-400" />
             <button @click="removeQuestion(index)" class="px-4 py-2">Remove Question</button>
         </div>
-        <button @click="submitQuiz" class="px-4 py-2 mt-4">Submit Quiz</button>
+        <button @click="submitQuiz" class="px-4 py-2 mt-4" :disabled="!isFormValid">Submit Quiz</button>
+        <button @click="logFormValidity"> form check</button>
     </div>
 </template>
 
@@ -26,7 +27,25 @@ export default {
             ]
         };
     },
+    computed: {
+        isFormValid() {
+            return this.questions.every(question => {
+                return question.question !== '' && question.correctAnswer !== '' && question.options.some(option => option !== '');    
+            });
+        }
+    },
+    watch: {
+        questions: {
+            handler() {
+                console.log('Form validity:', this.isFormValid);
+            },
+            deep: true
+        }
+    },
     methods: {
+        logFormValidity() {
+            console.log('Form validity:', this.isFormValid);
+        },
         removeQuestion(index) {
             this.questions.splice(index, 1);
         },

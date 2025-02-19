@@ -32,7 +32,6 @@
 
             <component 
                 :is="selectedElementComponent" 
-                @question-submitted="handleQuestionSubmitted" 
             />
 
             <div v-if="currentQuestion">
@@ -118,7 +117,7 @@ export default {
             }
         },
         handleQuestionSubmitted(question) {
-            this.currentQuestion = question;
+
         },
         addQuestion() {
             if (this.isQuestionComplete) {
