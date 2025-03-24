@@ -1,7 +1,7 @@
 <template>
     <nav>
         <div class="bg-white text-black p-4 flex justify-between">
-            <img src="../icons/logo.svg" alt="">
+            <img src="../icons/logo.svg" alt="logo">
             <div class="flex items-center space-x-8 mx-auto">
 
             <a class="text-black no-underline hover:underline" href="#">

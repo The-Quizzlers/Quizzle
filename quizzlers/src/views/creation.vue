@@ -7,20 +7,38 @@
                 placeholder="Enter quiz title" 
                 class="w-full p-2 mb-4 border border-gray-300 rounded-md placeholder-gray-400" 
             />
+          <div class="flex-row flex">
+            <p class="mr-2">Private: </p>
+            <input
+                type="checkbox"
+                v-model="isPublic"
+                placeholder="Private"
+            >
+          </div>
 
-            <div class="mb-4">
-                <button 
-                    v-for="category in categories" 
-                    :key="category" 
-                    @click="selectedCategory = category" 
-                    :class="{ 'bg-blue-500 text-white': selectedCategory === category }" 
-                    class="px-4 py-2 mr-2">
-                    {{ category }}
-                </button>
+            <div class="mb-4 flex flex-row">
+              <label class="mr-2"> Category </label>
+              <select v-model="selectedCategory">
+                <option
+                  v-for="category in categories"
+                  :key="category"
+                >
+                  {{ category }}
+                </option>
+              </select>
+<!--                <button -->
+<!--                    v-for="category in categories" -->
+<!--                    :key="category" -->
+<!--                    @click="selectedCategory = category"-->
+<!--                    :class="{ 'bg-blue-500 text-white': selectedCategory === category }"-->
+<!--                    class="px-4 py-2 mr-2">-->
+<!--                    {{ category }}-->
+<!--                </button>-->
             </div>
         </div>
         
         <div>
+            <label> Create question: </label>
             <button 
                 v-for="element in elements" 
                 :key="element" 
@@ -31,7 +49,8 @@
             </button>
 
             <component 
-                :is="selectedElementComponent" 
+                :is="selectedElementComponent"
+                @submit="addQuestion"
             />
 
             <div v-if="currentQuestion">
@@ -80,15 +99,22 @@ export default {
     components: { Choice, Truth, Typing },
     data() {
         return {
+          //tests
+            user_id_temp: 1,
+          // Quiz stuff
+            isPublic: true,
             quizTitle: '',
             selectedCategory: '',
+          // quiz logic
             quizSubmitted: false,
-            questions: [],
-            selectedElement: '',
-            currentQuestion: null,
             isSubmitting: false,
             categories: ['Math', 'Science', 'History', 'Geography', 'Literature'],
-            elements: ['Choice', 'Truth', 'Typing']
+            selectedElement: '',
+          //Question vars
+            elements: ['Choice', 'Truth', 'Connect'],
+          // choice truth connect questions in order
+            questions: [[], [], []],
+            currentQuestion: null,
         };
     },
     computed: {
@@ -108,7 +134,19 @@ export default {
                     category: this.selectedCategory,
                     questions: this.questions
                 };
-                await axios.post('http://127.0.0.1:8000/api/create/choice', quizData);
+                await axios({
+                  method: "post",
+                  url: `http://127.0.0.1:8000/api/create/quiz`,
+                  data: {
+                    title: this.quizTitle,
+                    category: this.selectedCategory,
+                    questions: this.questions
+                  },
+                  xsrfCookieName: "XSRF-TOKEN",
+                  xsrfHeaderName: "X-XSRF-TOKEN"
+                }).then((response) => {
+                  console.log(response);
+                });
                 this.quizSubmitted = true;
             } catch (error) {
                 console.error('Error submitting quiz:', error);

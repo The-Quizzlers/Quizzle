@@ -29,6 +29,7 @@ Route::group(['prefix' => '/api'], function () {
             Route::post("/trueFalse", 'trueFalse') ->name("trueFalse");
             Route::post("/choice", 'choice') ->name("choice");
             Route::post("/connect", 'connect') ->name("connect");
+            Route::post("/quiz", 'store') ->name("quiz");
         });
     });
     // user routes

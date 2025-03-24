@@ -14,7 +14,7 @@
             </div>
             <button @click="removeQuestion(index)" class="px-4 py-2">Remove Question</button>
         </div>
-        <button @click="submitQuiz" class="px-4 py-2 mt-4 ">Submit Quiz</button>
+        <button @click="$emit('submit')" class="px-4 py-2 mt-4 ">Submit Quiz</button>
     </div>
 </template>
 
@@ -46,20 +46,20 @@ export default {
         assignCategory(category) {
             this.selectedCategory = category;
         },
-        submitQuiz() {
-            console.log('Quiz submitted:', this.questions);
-            const quizData = {
-                questions: this.questions
-            };
-
-            axios.post('http://127.0.0.1:8000/api/quiz/create', quizData)
-            .then(response => {
-                console.log('Success:', response.data);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        }
+        // submitQuiz() {
+        //     console.log('Quiz submitted:', this.questions);
+        //     const quizData = {
+        //         questions: this.questions
+        //     };
+        //
+        //     axios.post('http://127.0.0.1:8000/api/quiz/create', quizData)
+        //     .then(response => {
+        //         console.log('Success:', response.data);
+        //     })
+        //     .catch(error => {
+        //         console.error('Error:', error);
+        //     });
+        // }
     }
 };
 </script>
