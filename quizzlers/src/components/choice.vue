@@ -8,21 +8,22 @@
             <input type="text" v-model="question.correctAnswer" placeholder="Enter correct answer" class="w-full p-2 mb-2 border border-gray-300 rounded-md placeholder-gray-400" />
             <button @click="removeQuestion(index)" class="px-4 py-2">Remove Question</button>
         </div>
-        <button @click="submitQuiz" class="px-4 py-2 mt-4" :disabled="!isFormValid">Submit Quiz</button>
-        <button @click="logFormValidity"> form check</button>
+        <button @click="addQuestionsToParent" class="px-4 py-2 mt-4" :disabled="!isFormValid">Add Questions</button>
+        <button @click="logFormValidity">form check</button>
     </div>
 </template>
 
 <script>
-import axios from 'axios';
 export default {
+    emits: ['questions-added'],
     data() {
         return {
             questions: [
                 {
                     question: '',
                     options: [''],
-                    correctAnswer: ''
+                    correctAnswer: '',
+                    type: 'choice'
                 }
             ]
         };
@@ -54,19 +55,17 @@ export default {
                 this.questions[questionIndex].options.push('');
             }
         },
-        submitQuiz() {
-            console.log('Quiz submitted:', this.questions);
-            const quizData = {
-                questions: this.questions
-            };
-
-            axios.post('http://127.0.0.1:8000/api/quiz/create/choice', quizData)
-            .then(response => {
-                console.log('Success:', response.data);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+        addQuestionsToParent() {
+            console.log('Adding questions to parent:', this.questions);
+            this.$emit('questions-added', this.questions);
+            this.questions = [
+                {
+                    question: '',
+                    options: [''],
+                    correctAnswer: '',
+                    type: 'choice'
+                }
+            ];
         }
     }
 };

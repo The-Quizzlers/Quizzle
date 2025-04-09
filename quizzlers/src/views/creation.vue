@@ -18,6 +18,15 @@
                     {{ category }}
                 </button>
             </div>
+
+            <div class="mb-4 flex items-center">
+                <span class="mr-2">Public:</span>
+                <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" v-model="publicity" class="sr-only peer">
+                    <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:bg-blue-600 peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800"></div>
+                    <div class="absolute left-1 top-1 bg-white w-5 h-5 rounded-full transition-transform peer-checked:translate-x-full"></div>
+                </label>
+            </div>
         </div>
         
         <div>
@@ -32,22 +41,9 @@
 
             <component 
                 :is="selectedElementComponent" 
+                @questions-added="handleQuestionsAdded"
             />
 
-            <div v-if="currentQuestion">
-                <button 
-                    @click="addQuestion" 
-                    class="px-4 py-2 bg-green-500 text-white rounded-md mr-2" 
-                    :disabled="!isQuestionComplete || isSubmitting">
-                    Add Question
-                </button>
-                <button 
-                    @click="resetQuestion" 
-                    class="px-4 py-2 bg-yellow-500 text-white rounded-md mr-2" 
-                    :disabled="isSubmitting">
-                    Create New Question
-                </button>
-            </div>
         </div>
 
         <div v-if="questions.length > 0">
@@ -57,7 +53,7 @@
                     v-for="(question, index) in questions" 
                     :key="index" 
                     class="mt-2 p-2 border border-gray-300 rounded-md">
-                    {{ question.text }}
+                    {{ question.question }}
                 </li>
             </ul>
             <button 
@@ -72,9 +68,9 @@
 
 <script>
 import axios from 'axios';
-import Choice from '@/components/Choice.vue';
-import Truth from '@/components/Truth.vue';
-import Typing from '@/components/Typing.vue';
+import Choice from '@/components/choice.vue';
+import Truth from '@/components/truth.vue';
+import Typing from '@/components/typing.vue';
 
 export default {
     components: { Choice, Truth, Typing },
@@ -83,20 +79,21 @@ export default {
             quizTitle: '',
             selectedCategory: '',
             quizSubmitted: false,
+            choice: [],
+            true_or_false: [],
+            typing: [],
             questions: [],
             selectedElement: '',
-            currentQuestion: null,
             isSubmitting: false,
             categories: ['Math', 'Science', 'History', 'Geography', 'Literature'],
-            elements: ['Choice', 'Truth', 'Typing']
+            elements: ['Choice', 'Truth', 'Typing'],
+            user_id: 1,
+            publicity: true
         };
     },
     computed: {
         selectedElementComponent() {
             return this.selectedElement ? this.selectedElement.toLowerCase() : null;
-        },
-        isQuestionComplete() {
-            return this.currentQuestion && this.currentQuestion.text && this.currentQuestion.options;
         }
     },
     methods: {
@@ -106,7 +103,11 @@ export default {
                 const quizData = {
                     title: this.quizTitle,
                     category: this.selectedCategory,
-                    questions: this.questions
+                    public: this.publicity,
+                    user_id: this.user_id,
+                    choice: this.choice,
+                    true_or_false: this.true_or_false,
+                    typing: this.typing
                 };
                 await axios.post('http://127.0.0.1:8000/api/create/choice', quizData);
                 this.quizSubmitted = true;
@@ -116,19 +117,18 @@ export default {
                 this.isSubmitting = false;
             }
         },
-        handleQuestionSubmitted(question) {
-
-        },
-        addQuestion() {
-            if (this.isQuestionComplete) {
-                this.questions.push(this.currentQuestion);
-                this.currentQuestion = null;
-                this.selectedElement = '';
+        handleQuestionsAdded(questions) {
+            if (questions.length > 0) {
+                const questionType = questions[0].type;
+                if (questionType === 'choice') {
+                    this.choice.push(...questions);
+                } else if (questionType === 'truth') {
+                    this.true_or_false.push(...questions);
+                } else if (questionType === 'typing') {
+                    this.typing.push(...questions);
+                }
+                this.questions.push(...questions);
             }
-        },
-        resetQuestion() {
-            this.selectedElement = '';
-            this.currentQuestion = null;
         }
     }
 };

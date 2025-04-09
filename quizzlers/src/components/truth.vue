@@ -14,51 +14,43 @@
             </div>
             <button @click="removeQuestion(index)" class="px-4 py-2">Remove Question</button>
         </div>
-        <button @click="submitQuiz" class="px-4 py-2 mt-4 ">Submit Quiz</button>
+        <button @click="addQuestionsToParent" class="px-4 py-2 mt-4" :disabled="!isFormValid">Add Questions</button>
     </div>
 </template>
 
 <script>
-import axios from 'axios';
 export default {
+    emits: ['questions-added'],
     data() {
         return {
             questions: [
                 {
                     question: '',
-                    options: ['', '', '', ''],
-                    correctAnswer: ''
+                    correctAnswer: '',
+                    type: 'truth'
                 }
             ]
         };
     },
+    computed: {
+        isFormValid() {
+            return this.questions.every(question => question.question !== '' && question.correctAnswer !== '');
+        }
+    },
     methods: {
-        addQuestion() {
-            this.questions.push({
-                question: '',
-                options: ['', '', '', ''],
-                correctAnswer: ''
-            });
-        },
         removeQuestion(index) {
             this.questions.splice(index, 1);
         },
-        assignCategory(category) {
-            this.selectedCategory = category;
-        },
-        submitQuiz() {
-            console.log('Quiz submitted:', this.questions);
-            const quizData = {
-                questions: this.questions
-            };
-
-            axios.post('http://127.0.0.1:8000/api/quiz/create', quizData)
-            .then(response => {
-                console.log('Success:', response.data);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+        addQuestionsToParent() {
+            console.log('Adding questions to parent:', this.questions);
+            this.$emit('questions-added', this.questions);
+            this.questions = [
+                {
+                    question: '',
+                    correctAnswer: '',
+                    type: 'truth'
+                }
+            ];
         }
     }
 };
